@@ -1,0 +1,20 @@
+anchors:
+  agent_name:
+    source: "core-space/activation.md"
+    type: string
+  assist_prefix:
+    source: "AIPA-MANIFEST.yaml#assist_prefix"
+    type: string
+  identity:
+    source: "core-space/activation.md#identity"
+    type: text
+  tone:
+    source: null
+    type: text
+  format:
+    source: null
+    type: text
+    reserved: true
+  language:
+    source: "user-space/overrides.yaml#display.language"
+    type: string

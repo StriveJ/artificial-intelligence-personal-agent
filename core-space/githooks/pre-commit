@@ -1,0 +1,22 @@
+#!/bin/sh
+# AIPA branch-safety guard (layer 3). aipa-pre-commit.mjs owns the decision logic;
+# this shell only delegates. Do not duplicate the authoritative rule here.
+# Escape hatch: git commit --no-verify
+#
+# Fail open with a visible warning when prerequisites are unavailable. Any nonzero
+# hook exit blocks a commit, and core.hooksPath is shared across the repository.
+# Missing Node (common in GUI Git clients) or a missing script must not disable all
+# commits in a checkout, including unrelated code commits.
+# Git normally invokes this inside a repository; root detection failure is abnormal.
+root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "[aipa] Cannot determine the repository root; branch check skipped" >&2; exit 0; }
+[ -z "$root" ] && { echo "[aipa] Cannot determine the repository root; branch check skipped" >&2; exit 0; }
+
+script="$root/core-space/scripts/aipa-pre-commit.mjs"
+lib="$root/core-space/scripts/lib/trunk.mjs"
+[ -f "$script" ] || { echo "[aipa] Guard script missing ($script); branch check skipped" >&2; exit 0; }
+# Check the imported library too. ESM imports resolve before module-body execution,
+# so a missing library exits before the script's try/catch can provide fail-open behavior.
+[ -f "$lib" ] || { echo "[aipa] Decision library missing ($lib); branch check skipped" >&2; exit 0; }
+command -v node >/dev/null 2>&1 || { echo "[aipa] Node is unavailable; branch check skipped" >&2; exit 0; }
+
+exec node "$script" --from-hook

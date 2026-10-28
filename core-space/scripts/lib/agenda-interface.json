@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "provider": "aipa-signal agenda",
+  "schemas": [
+    1,
+    2
+  ],
+  "writer_schema": 2,
+  "files": {
+    "agenda-records.mjs": "caaccee88bfaceaee3df5c3f8b58d4675114634aec1423039b88cf45d1dfe7ac",
+    "reminders.mjs": "eb345cc334f7000004bf5e818510b006cab8cf16c65a3d90933f67911e1650ad",
+    "reminder-plugin.mjs": "5ea5060750c23d8dc016382a3093750df5fc73330d516c7ee5248f0269b9d78c",
+    "agenda-provider.mjs": "97c2b0ace5cc69f5c9b3c629f27454b11710fe6452ee231034020bcd699fe5e2"
+  }
+}

@@ -1,0 +1,39 @@
+name: Foundation integrity
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out foundation
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          path: foundation
+          persist-credentials: false
+      - name: Check out public validators
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: StriveJ/artificial-intelligence-origin-agent
+          ref: master
+          path: validators
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Verify structure and checksums
+        run: node validators/studio/scripts/aipa-validate-origin.mjs --origin foundation --strict
+      - name: Verify public content
+        run: node validators/studio/scripts/aipa-origin-abstract-check.mjs --dir foundation

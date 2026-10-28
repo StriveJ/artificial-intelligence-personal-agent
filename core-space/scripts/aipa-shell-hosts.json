@@ -1,0 +1,15 @@
+{
+  "source": ".ide_activation/aipa.md",
+  "hosts": [
+    {
+      "id": "workbuddy",
+      "label": "WorkBuddy / CodeBuddy Code / Trae",
+      "target": ".codebuddy/commands/aipa.md"
+    },
+    {
+      "id": "claude",
+      "label": "Claude Code",
+      "target": ".claude/commands/aipa.md"
+    }
+  ]
+}

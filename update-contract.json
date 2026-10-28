@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "min_node": 18,
+  "capabilities": [
+    "memory-revocation-v1",
+    "memory-conflicts-v1",
+    "distill-operations-v1",
+    "durable-dedup-v1",
+    "confirmed-decision-v1",
+    "explicit-project-v1",
+    "external-budget-v1",
+    "offline-tasks-v1",
+    "session-binding-v1",
+    "memory-lifecycle-v1",
+    "context-projection-v1",
+    "context-completeness-v1",
+    "business-clock-v1",
+    "event-identity-v1",
+    "memory-usage-receipts-v1",
+    "agenda-provider-v1",
+    "memory-index-history-v1"
+  ],
+  "formats": {
+    "user-space/memory/memory-meta.json": 1,
+    "state/session-context.json": 1,
+    "state/external-budget.json": 1,
+    "state/offline-tasks.json": 1,
+    "state/memory-usage-receipts.json": 1
+  },
+  "executables": [
+    "core-space/githooks/pre-commit"
+  ]
+}

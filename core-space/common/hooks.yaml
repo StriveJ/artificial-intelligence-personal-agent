@@ -1,0 +1,14 @@
+# Lifecycle hook registry. Filters run in order; aipa-lifecycle normalizes decisions.
+hooks:
+  session_start:
+  after_input:
+    - privacy-filter
+    - value-check
+  skill_pre:
+    - value-check
+  skill_post:
+  before_summarize:
+    - privacy-filter
+  before_upload:
+    - privacy-filter
+  after_pull:

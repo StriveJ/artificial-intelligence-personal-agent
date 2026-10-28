@@ -1,0 +1,11 @@
+mentor_id: embedded-engineer
+name: Embedded Engineering Mentor
+industry: embedded development
+tech_stack: [C, RTOS, Python, embedded Linux]
+role: Professional
+description: Mentor template focused on embedded systems development
+persona: persona.md
+hooks:
+  before_summarize:
+    - privacy-filter
+scripts: []

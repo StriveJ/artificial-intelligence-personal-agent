@@ -1,0 +1,222 @@
+tools:
+  aipa-audit.mjs:
+    write: state
+    destructive: false
+  aipa-bg-guard.mjs:
+    write: state
+    destructive: false
+  aipa-channel.mjs:
+    write: state
+    destructive: false
+  aipa-checkpoint.mjs:
+    write: state
+    destructive: false
+  aipa-coldstart.mjs:
+    write: memory
+    destructive: false
+  aipa-contribute-status.mjs:
+    write: state
+    destructive: false
+  aipa-decay.mjs:
+    write: memory
+    destructive: false
+  aipa-dedup.mjs:
+    write: memory
+    destructive: false
+  aipa-distill.mjs:
+    write: memory
+    destructive: false
+  aipa-dream.mjs:
+    write: state
+    destructive: false
+  aipa-event.mjs:
+    write: state
+    destructive: false
+  aipa-export-edits.mjs:
+    write: state
+    destructive: false
+  aipa-export.mjs:
+    write: state
+    destructive: false
+  aipa-gate.mjs:
+    write: read
+    destructive: false
+  aipa-health.mjs:
+    write: state
+    destructive: false
+  aipa-import.mjs:
+    write: memory
+    destructive: false
+  aipa-index.mjs:
+    write: memory
+    destructive: false
+  aipa-lifecycle.mjs:
+    write: read
+    destructive: false
+  aipa-mentor.mjs:
+    write: memory
+    destructive: false
+  aipa-memory-diff.mjs:
+    write: read
+    destructive: false
+  aipa-offline-queue.mjs:
+    write: state
+    destructive: false
+  aipa-persona.mjs:
+    write: read
+    destructive: false
+  aipa-photosynthesis.mjs:
+    write: state
+    destructive: false
+  aipa-privacy-filter.mjs:
+    write: read
+    destructive: false
+  aipa-privacy.mjs:
+    write: read
+    destructive: false
+  aipa-project-add.mjs:
+    write: memory
+    destructive: false
+  aipa-pull-origin.mjs:
+    write: upload
+    destructive: false
+  aipa-relations.mjs:
+    write: memory
+    destructive: false
+  aipa-route.mjs:
+    write: read
+    destructive: false
+  aipa-scene.mjs:
+    write: read
+    destructive: false
+  aipa-seam.mjs:
+    write: read
+    destructive: false
+  aipa-session.mjs:
+    write: state
+    destructive: false
+  aipa-sleep.mjs:
+    write: state
+    destructive: false
+  aipa-suggest-skill.mjs:
+    write: read
+    destructive: false
+  aipa-summarize.mjs:
+    write: memory
+    destructive: false
+  aipa-sync.mjs:
+    write: upload
+    destructive: false
+  aipa-trait-confirm.mjs:
+    write: memory
+    destructive: false
+  aipa-value-check.mjs:
+    write: read
+    destructive: false
+  aipa-kb-ingest.mjs:
+    write: memory
+    destructive: false
+  aipa-kb-index.mjs:
+    write: state
+    destructive: false
+  aipa-search.mjs:
+    write: read
+    destructive: false
+  aipa-canvas.mjs:
+    write: state
+    destructive: false
+  aipa-daily.mjs:
+    write: memory
+    destructive: false
+  aipa-dashboard.mjs:
+    write: memory
+    destructive: false
+  aipa-day-check.mjs:
+    write: state
+    destructive: false
+  aipa-day-start.mjs:
+    write: state
+    destructive: false
+  aipa-errors.mjs:
+    write: state
+    destructive: false
+  aipa-host-check.mjs:
+    write: read
+    destructive: false
+  aipa-host-usage.mjs:
+    write: memory
+    destructive: false
+  aipa-llm.mjs:
+    write: read
+    destructive: false
+  aipa-metrics.mjs:
+    write: memory
+    destructive: false
+  aipa-offload.mjs:
+    write: state
+    destructive: true
+  aipa-profile.mjs:
+    write: memory
+    destructive: false
+  aipa-prune.mjs:
+    write: state
+    destructive: true
+  aipa-recall.mjs:
+    write: read
+    destructive: false
+  aipa-refresh.mjs:
+    write: memory
+    destructive: false
+  aipa-sceneblock.mjs:
+    write: memory
+    destructive: false
+  aipa-signal.mjs:
+    # scan writes state; agenda can write through the controlled Hub provider, so declare the maximum write scope.
+    write: memory
+    destructive: false
+  aipa-skill-lint.mjs:
+    write: read
+    destructive: false
+  aipa-tick.mjs:
+    write: state
+    destructive: false
+  aipa-tool-detect.mjs:
+    write: read
+    destructive: false
+  aipa-warmup.mjs:
+    write: state
+    destructive: false
+  aipa-install-project.mjs:
+    write: upload
+    destructive: false
+  aipa-shell-sync.mjs:
+    write: upload
+    destructive: false
+  aipa-remind.mjs:
+    write: memory
+    destructive: false
+  aipa-report.mjs:
+    write: upload
+    destructive: false
+  aipa-git-guard.mjs:
+    write: state
+    destructive: false
+  aipa-pre-commit.mjs:
+    write: read
+    destructive: false
+  aipa-project.mjs:
+    write: read
+    destructive: false
+
+  aipa-memory-meta.mjs:
+    write: memory
+    destructive: false
+  aipa-load.mjs:
+    write: state
+    destructive: false
+  aipa-runtime-migrate.mjs:
+    write: state
+    destructive: true
+  aipa-upgrade.mjs:
+    write: state
+    destructive: true

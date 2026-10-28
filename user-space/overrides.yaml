@@ -1,0 +1,7 @@
+# Display overrides may use only keys registered in core-space/anchors.yaml.
+display:
+  # agent_name: "Jarvis"          # Consistent agent name
+  # assist_prefix: "Jarvis: "     # Complete reply prefix
+  # identity: ""                  # Identity text
+  # tone: ""                      # Reply tone
+  language: auto                 # Model output: auto or a BCP 47 tag, e.g. en, zh-CN, ja; UI and CLI remain English.

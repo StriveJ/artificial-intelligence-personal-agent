@@ -1,0 +1,8 @@
+# Personal boundaries: user-editable, without overriding built-in hard boundaries.
+red_lines:
+  - ""
+
+# Personal values/soft constraints: a "suspicious:" match asks the user instead of hard blocking.
+# Example: - "suspicious: working past midnight"
+values:
+  - ""

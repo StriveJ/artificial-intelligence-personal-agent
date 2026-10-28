@@ -1,0 +1,35 @@
+# Instance records synchronize by default. Exceptions below are caches, raw offloads,
+# local logs/session/decay state, absolute paths, anonymous device IDs, and locks.
+state/.origin-cache/
+state/offload/
+state/*.log
+state/base-dir
+state/current-sid
+state/current-tool
+state/last-active-day
+state/memory-decay.json
+state/resume-prompt.md
+state/search-log.jsonl
+state/session-checkpoint.md
+state/device-id
+state/host-id
+state/archive/*.removed-*
+local_path
+.worktrees/
+user-space/logs/dashboard.html
+
+state/session-context.json
+state/*.lock
+user-space/memory/memory-meta.json.lock
+state/memory-decay.json.lock
+state/growth-events.jsonl
+state/file-loads.jsonl
+state/external-budget.json
+state/external-cancel.json
+state/offline-tasks.json
+state/restore-report.json
+state/memory-transaction.json
+state/memory-usage-receipts.json
+state/upgrade/
+state/sleep-mode.md
+state/test/

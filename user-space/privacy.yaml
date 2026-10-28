@@ -1,0 +1,21 @@
+upload_policy:
+  mode: ask
+  block_patterns:
+    - "password|secret|token|apikey"
+  block_tags: [private, personal, sensitive, financial]
+  ask_if_unmatched: true
+
+# Diagnostic scope must exactly match UPLOAD_SCOPE in
+# core-space/scripts/lib/telemetry-disclosure.mjs, the consent notice, and dashboard.
+# lab/tests/core-space/scripts/telemetry-disclosure.test.mjs guards consistency.
+# Sending requires both beta channel AND explicit telemetry consent.
+telemetry:
+  # Factory default only. Actual state is in AIPA-MANIFEST.yaml, written through
+  # aipa-channel --telemetry on and checked by aipa-report. This file is not rewritten.
+  enabled: false
+  # Payload error fields: ts, scope, kind, message, count. Message snippets are
+  # redacted and capped at 200 characters. Change the authoritative constant too.
+  scope: version, channel, anonymous device ID, and error timestamps, script names, kinds, counts, and redacted message snippets
+  # The payload is built from explicit fields; it does not read profiles/projects.
+  # Bare project names are not universally covered by keyed redaction patterns.
+  never_includes: Does not read memory, profiles, or project names; error messages are redacted and exclude file paths and original content

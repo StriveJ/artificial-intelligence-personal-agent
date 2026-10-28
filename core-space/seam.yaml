@@ -1,0 +1,86 @@
+seams:
+  memory:
+    interface: get/set/rebuild/decay
+    provider: core-space/scripts/aipa-index.mjs
+    consumers: [core-space/scripts/aipa-summarize.mjs, core-space/scripts/aipa-decay.mjs, AGENTS.md]
+  skills:
+    interface: route/trigger
+    provider: core-space/scripts/aipa-route.mjs
+    consumers: [AGENTS.md]
+  privacy:
+    interface: filter/check
+    provider: core-space/scripts/aipa-privacy-filter.mjs
+    consumers: [core-space/scripts/aipa-gate.mjs, core-space/scripts/aipa-sync.mjs]
+  scene:
+    interface: detect
+    provider: core-space/scripts/aipa-scene.mjs
+    consumers: [core-space/scripts/aipa-persona.mjs]
+  llm:
+    interface: judge/summarize
+    provider: external
+    consumers: [core-space/scripts/aipa-summarize.mjs, core-space/scripts/aipa-dream.mjs]
+  agent-loop:
+    interface: dispatch
+    provider: core-space/scripts/aipa-route.mjs
+    consumers: [AGENTS.md, core-space/scripts/aipa-dream.mjs]
+  knowledge-base:
+    interface: ingest/index/search/usage-receipt
+    provider: core-space/scripts/aipa-search.mjs
+    consumers: [AGENTS.md]
+  session:
+    interface: record/resume
+    provider: core-space/scripts/aipa-session.mjs
+    consumers: [AGENTS.md, .claude/hooks/session-hook.mjs]
+  distill:
+    interface: add/list/confirm/discard/status/recover
+    provider: core-space/scripts/aipa-distill.mjs
+    consumers: [AGENTS.md]
+  reminders:
+    interface: tick/signal/ack/snooze
+    provider: core-space/scripts/aipa-tick.mjs
+    consumers: [AGENTS.md, core-space/scripts/aipa-day-start.mjs]
+  compression:
+    interface: offload/canvas
+    provider: core-space/scripts/aipa-offload.mjs
+    consumers: [AGENTS.md, core-space/activation.md]
+  journal:
+    interface: daily/recall/backfill
+    provider: core-space/scripts/aipa-daily.mjs
+    consumers: [AGENTS.md, core-space/scripts/aipa-day-start.mjs]
+  observability:
+    interface: dashboard/metrics/host-usage
+    provider: core-space/scripts/aipa-dashboard.mjs
+    consumers: [AGENTS.md, core-space/scripts/aipa-refresh.mjs]
+  contribution:
+    interface: status/prepare/export
+    provider: [core-space/scripts/aipa-contribute-status.mjs, core-space/scripts/aipa-export-edits.mjs]
+    consumers: [AGENTS.md]
+  release-channel:
+    interface: get/set
+    provider: core-space/scripts/aipa-channel.mjs
+    consumers: [core-space/scripts/aipa-pull-origin.mjs, core-space/scripts/lib/dashboard.mjs]
+  telemetry:
+    interface: channel/report
+    provider: core-space/scripts/aipa-report.mjs
+    consumers: [AGENTS.md, core-space/scripts/aipa-channel.mjs, core-space/scripts/lib/dashboard.mjs]
+
+  memory-meta:
+    interface: annotate/confirm/revoke/feedback/lifecycle
+    provider: core-space/scripts/aipa-memory-meta.mjs
+    consumers: [core-space/scripts/aipa-index.mjs, core-space/scripts/aipa-search.mjs, core-space/scripts/aipa-profile.mjs]
+  context-load:
+    interface: read/observe/context-project/diagnostics-read-only
+    provider: core-space/scripts/aipa-load.mjs
+    consumers: [.ide_activation/aipa.md, core-space/activation.md]
+  agenda-provider:
+    interface: agenda/list/propose/confirm
+    provider: core-space/scripts/aipa-signal.mjs
+    consumers: [core-space/host-protocol.md]
+  version-install:
+    interface: preview/apply/recover/pin/framework-only
+    provider: core-space/scripts/aipa-upgrade.mjs
+    consumers: [core-space/scripts/aipa-pull-origin.mjs, scripts/aipa-update.mjs]
+  runtime-migration:
+    interface: preview/apply
+    provider: core-space/scripts/aipa-runtime-migrate.mjs
+    consumers: [core-space/scripts/aipa-pull-origin.mjs]

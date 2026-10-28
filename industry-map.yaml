@@ -1,0 +1,25 @@
+industries:
+  hardware/embedded:
+    - embedded development
+    - microcontroller development
+    - FPGA development
+    - hardware design
+    - semiconductors
+    - chip design
+  internet/software:
+    - frontend development
+    - backend development
+    - full-stack development
+    - mobile development
+    - DevOps
+  artificial-intelligence:
+    - machine learning
+    - deep learning
+    - computer vision
+    - natural language processing
+    - data science
+  enterprise-IT:
+    - enterprise software
+    - systems integration
+    - IT operations
+    - database administration
