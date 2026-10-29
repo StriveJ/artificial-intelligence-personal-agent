@@ -20,9 +20,8 @@ const root = arg('root') || '.';
 const KNOWN = new Set(['put', 'get', 'list', 'gc']);
 const cmd = process.argv.slice(2).find((a) => KNOWN.has(a)) || '';
 
-function tsLocalOf(d) { const p = (x) => String(x).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`; }
 const dayStartHour = sharedDayStartHour(root);
-const nowTsLocal = arg('ts') || tsLocalOf(new Date());
+const nowTsLocal = arg('ts') || tsLocal(new Date());
 const today = dayKey(nowTsLocal, dayStartHour);
 const indexPath = join(root, 'state', 'offload', 'index.json');
 const loadIndex = () => (existsSync(indexPath) ? parseIndex(readFileSync(indexPath, 'utf8')) : { version: '0.1', entries: [] });
@@ -59,7 +58,7 @@ if (cmd === 'put') {
   const days = Number(arg('days') || '7');
 
   const cutoffDate = new Date(Date.now() - days * 86400000);
-  const cutoff = dayKey(tsLocalOf(cutoffDate), dayStartHour);
+  const cutoff = dayKey(tsLocal(cutoffDate), dayStartHour);
   const before = loadIndex();
   const { index, removed } = gcIndex(before, cutoff);
   let removedBytes = 0;

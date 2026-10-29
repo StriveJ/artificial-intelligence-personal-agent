@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // host usage
-import {clockTimestamp as businessTimestamp} from './lib/day-clock.mjs';
+import {createBusinessClock} from './lib/day-clock.mjs';
 
 // usage:
 
@@ -9,28 +9,25 @@ import { join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { collectHostUsage, hostUsageLines, readOwnUsageRows, readUsageRows, resolveUsageStore, upsertUsageRow, writeUsageRows } from './lib/host-usage.mjs';
 import { collectRegisteredProjects } from './lib/shell-sync.mjs';
-import { dayKey } from './lib/time-boundary.mjs';
-import { dayStartHour as llmDayStartHour } from './lib/llm-provider.mjs';
 import { crashGuard } from './lib/error-sink.mjs';
 
 function arg(n) { const i = process.argv.indexOf('--' + n); return i >= 0 ? process.argv[i + 1] : ''; }
 const has = (n) => process.argv.includes('--' + n);
-function tsLocal(d){return businessTimestamp(root,d);}
 const KNOWN = new Set(['snapshot', 'show']);
 
 const root = resolve(arg('root') || '.');
 crashGuard(root, 'aipa-host-usage');
 const cmd = process.argv.slice(2).find((a) => KNOWN.has(a)) || '';
 
-const dayStartHour = llmDayStartHour(root);
-const today = dayKey(tsLocal(new Date()), dayStartHour);
+const clock = createBusinessClock(root);
+const today = clock.dayKey(new Date());
 
 if (cmd === 'snapshot') {
   const day = arg('day') || today;
   const store = resolveUsageStore(root);
 
   const scopePaths = has('all') ? [] : [root, ...collectRegisteredProjects(root)];
-  const rows = collectHostUsage({ day, dayStartHour, home: arg('home') || homedir(), scopePaths });
+  const rows = collectHostUsage({ day, clock, home: arg('home') || homedir(), scopePaths });
 
   const prev = readOwnUsageRows(root);
   let merged = prev;

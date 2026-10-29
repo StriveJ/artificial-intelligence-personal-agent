@@ -20,11 +20,13 @@ export const cacheHitPctOf = pctOf;
 
 const kTokens = (n) => (num(n) < 1000 ? `${num(n)} tokens` : `${(num(n) / 1000).toFixed(1)}K`);
 
-function localTs(iso) {
+function usageDay(iso, dayStartHour, clock) {
   const d = new Date(String(iso));
   if (Number.isNaN(d.getTime())) return '';
+  if (clock) return clock.dayKey(d);
+  // Callers without an instance clock retain the OS-local bucketing API.
   const p = (x) => String(x).padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+  return dayKey(`${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`, dayStartHour);
 }
 
 export function parseCodexRollout(text) {
@@ -78,8 +80,8 @@ export function parseClaudeLog(text) {
   return { points };
 }
 
-export function codexDayUsage({ points, day, dayStartHour = 6 }) {
-  const dayOf = (p) => dayKey(localTs(p.ts), dayStartHour);
+export function codexDayUsage({ points, day, dayStartHour = 6, clock }) {
+  const dayOf = (p) => usageDay(p.ts, dayStartHour, clock);
   let before = null, last = null;
   for (const p of points) {
     const d = dayOf(p);
@@ -109,8 +111,8 @@ export function codexDayUsage({ points, day, dayStartHour = 6 }) {
   };
 }
 
-export function claudeDayUsage({ points, day, dayStartHour = 6 }) {
-  const picked = points.filter((p) => dayKey(localTs(p.ts), dayStartHour) === day);
+export function claudeDayUsage({ points, day, dayStartHour = 6, clock }) {
+  const picked = points.filter((p) => usageDay(p.ts, dayStartHour, clock) === day);
   if (!picked.length) return null;
   const sum = (k) => picked.reduce((s, p) => s + num(p[k]), 0);
   const last = picked[picked.length - 1];
@@ -276,7 +278,7 @@ function listFiles(dir, filter, out = []) {
 
 const norm = (p) => String(p || '').replace(/\\/g, '/').toLowerCase();
 
-export function collectHostUsage({ day, dayStartHour = 6, home = homedir(), scopePaths = [], maxAgeDays = 14, now = new Date() }) {
+export function collectHostUsage({ day, dayStartHour = 6, clock, home = homedir(), scopePaths = [], maxAgeDays = 14, now = new Date() }) {
   const rows = [];
   const scope = scopePaths.map(norm).filter(Boolean);
   const cutoff = now.getTime() - maxAgeDays * 86400000;
@@ -289,7 +291,7 @@ export function collectHostUsage({ day, dayStartHour = 6, home = homedir(), scop
     try { text = readFileSync(p, 'utf8'); } catch { continue; }
     const { cwd, points } = parseCodexRollout(text);
     if (!cwd || !points.length || !inScope(cwd)) continue;
-    const row = codexDayUsage({ points, day, dayStartHour });
+    const row = codexDayUsage({ points, day, dayStartHour, clock });
     if (!row) continue;
     codex.sessions += 1;
     codex.points += row.points;
@@ -332,7 +334,7 @@ export function collectHostUsage({ day, dayStartHour = 6, home = homedir(), scop
       }
     }
     if (points.length) {
-      const row = claudeDayUsage({ points, day, dayStartHour });
+      const row = claudeDayUsage({ points, day, dayStartHour, clock });
       if (row) rows.push({ ...row, sessions });
     }
   }

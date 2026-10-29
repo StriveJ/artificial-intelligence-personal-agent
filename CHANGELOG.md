@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+- Use the instance time zone and business-day boundary when grouping host usage and dating offloaded content.
+- Apply the same configured clock to offload garbage-collection retention.
+- Add regressions for different host time zones, business-day boundaries, daylight saving, and unchanged stored data.
+
 ## 1.0.0
 
 Initial public release of AIPA.
