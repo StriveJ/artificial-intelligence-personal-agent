@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Preserve Windows long-path support inside isolated synthetic Git environments used for release verification.
+- Surface bounded failure details in quality-gate logs and GitHub check annotations.
+- Keep Core runtime behavior and personal-data formats unchanged from 1.0.1.
+
 ## 1.0.1
 
 - Use the instance time zone and business-day boundary when grouping host usage and dating offloaded content.

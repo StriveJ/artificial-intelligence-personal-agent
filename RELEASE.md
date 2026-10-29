@@ -29,7 +29,7 @@ node scripts/aipa-update.mjs --root /absolute/path/to/my-aipa --artifact . --fra
 For an explicit GitHub source, the same coordinator accepts:
 
 ```bash
-node scripts/aipa-update.mjs --root /absolute/path/to/my-aipa --remote https://github.com/StriveJ/artificial-intelligence-personal-agent.git --version 1.0.1 --framework-only
+node scripts/aipa-update.mjs --root /absolute/path/to/my-aipa --remote https://github.com/StriveJ/artificial-intelligence-personal-agent.git --version 1.0.2 --framework-only
 ```
 
 Select a newer published version; reinstalling the current version is refused. Append `--apply` only after reviewing its preview. An exact full commit can be supplied with `--commit` instead of `--version`. Local packages use `--package <file> --sha256 <trusted-digest>`.

@@ -4,7 +4,7 @@
 
 AIPA（Artificial Intelligence Personal Agent）让你的 AI 宿主拥有跨会话的记忆、个人规则、可复用技能和项目上下文。数据以文件保存，由你自行掌握。
 
-**版本 1.0.1 · 本地优先 · Apache-2.0**
+**版本 1.0.2 · 本地优先 · Apache-2.0**
 
 本仓库是公开基础模板。日常使用前，请在独立目录初始化你的私有实例，不要把个人资料提交到这个公开仓库。
 
@@ -41,7 +41,7 @@ Core 框架、Hub 程序、个人实例数据分别更新。
 ### 2. 获取基础模板
 
 ```bash
-git clone --branch v1.0.1 https://github.com/StriveJ/artificial-intelligence-personal-agent.git
+git clone --branch v1.0.2 https://github.com/StriveJ/artificial-intelligence-personal-agent.git
 cd artificial-intelligence-personal-agent
 ```
 
@@ -122,10 +122,10 @@ Hub 提供网页入口和独立于编辑器运行的服务。
 
 ```bash
 git fetch --tags origin
-git checkout v1.0.1
+git checkout v1.0.2
 ```
 
-将 `v1.0.1` 替换为准备安装的较新发行版本；重复安装当前版本会被拒绝。先预览：
+将 `v1.0.2` 替换为准备安装的较新发行版本；重复安装当前版本会被拒绝。先预览：
 
 ```bash
 node scripts/aipa-update.mjs --root /absolute/path/to/my-aipa --artifact . --framework-only
