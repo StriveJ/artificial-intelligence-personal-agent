@@ -162,6 +162,13 @@ git -C /absolute/path/to/my-aipa remote add origin <your-private-repository-url>
 
 通用框架改进提交到 Origin，Hub 改进提交到 Hub。不要直接修改生成的 Personal 来替代源文件修改。
 
+## 联系我
+
+如果你有什么建议与想法，可以发邮箱联系我：
+
+- [1905212905@qq.com](mailto:1905212905@qq.com)
+- [strivejun@gmail.com](mailto:strivejun@gmail.com)
+
 ## 隐私和许可证
 
 外部模型、检索和同步遵循你的授权与实例隐私规则。配置密钥不代表允许发送全部文件。不要把真实实例、对话、凭据和运行配置提交到公开仓库。

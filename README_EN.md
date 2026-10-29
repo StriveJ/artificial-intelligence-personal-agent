@@ -162,6 +162,13 @@ Review tracked files and ignore rules before pushing. Keep credentials, machine-
 
 Propose reusable framework changes in Origin and Hub changes in Hub. Do not edit this generated foundation in place of its source.
 
+## Contact
+
+If you have any suggestions or ideas, feel free to contact me by email:
+
+- [1905212905@qq.com](mailto:1905212905@qq.com)
+- [strivejun@gmail.com](mailto:strivejun@gmail.com)
+
 ## Privacy and license
 
 External models, search and synchronization follow your authorization and instance privacy rules. A configured key does not authorize sending all files. Never publish your personal instance, conversations, credentials or runtime configuration in these public repositories.

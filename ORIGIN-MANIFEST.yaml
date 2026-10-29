@@ -1,9 +1,8 @@
 origin:
   version: 1.0.2
-  channel: stable
   build_source:
     schema: 1
-    commit: 34417473067860e586d9430ea8a54885f4054672
+    commit: c0ffa85227e9d2a3bfaec0e137ce9b63fc85deda
     branch: "master"
     dirty: false
   assist_prefix: "AIPA 1.0 collaborates with you: "
