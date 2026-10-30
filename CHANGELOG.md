@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.3
+
+- Keep persistent memory history readable when value digests are stale, report the affected rows, and repair digests during index rebuilding.
+- Scaffold the instance project rule for new installations and include actionable hints for missing required context.
+- Resolve relative initialization destinations, register custom project IDs locally, and reject invalid project IDs before writing files.
+- Retain personal project rules outside framework contributions and exported patches.
+- Make dashboard usage regressions deterministic across runner time zones and business-day boundaries.
+
 ## 1.0.2
 
 - Preserve Windows long-path support inside isolated synthetic Git environments used for release verification.

@@ -40,7 +40,15 @@ export function projectContext(root,{host='ide',project='',at=todayKey(root),bud
  file('user-space/profile.yaml','profile',{privacyMayOmit:true});
  if(project)file('user-space/projects/'+project+'/project.yaml','project-rule',{mustExist:true});
  if(host==='ide')file('core-space/host-protocol.md','host-protocol',{mustExist:true});
- if(issues.length)return blocked(issues.some(r=>r.reason==='privacy')?'required_context_private':'required_context_unavailable',{issues});
+ if(issues.length){
+  // A blocked activation must say what to do next; a bare reason cannot be acted on.
+  const actionable=issues.map(r=>{
+   if(r.reason!=='missing')return r;
+   const rel=String(r.id).startsWith('file:')?String(r.id).slice(5):String(r.id);
+   return {...r,action:'create '+rel};
+  });
+  return blocked(issues.some(r=>r.reason==='privacy')?'required_context_private':'required_context_unavailable',{issues:actionable});
+ }
  let responseLanguage;
  try { responseLanguage=readResponseLanguage(root); }
  catch { return blocked('response_language_unavailable',{issues:[{id:'file:user-space/overrides.yaml',reason:'unreadable-or-invalid'}]}); }

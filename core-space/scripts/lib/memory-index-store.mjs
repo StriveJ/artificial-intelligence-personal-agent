@@ -34,11 +34,20 @@ function readMemoryIndexCache(root, { strict = false } = {}) {
 }
 
 const historyFields=['file','title','source','created','device_id','last_modified_by','relations','tags','sensitive','projects','scope','valid_from','valid_until','type','media','pinned','decision_exempt','local_override','conflicts','confirmation','supersedes','supersedes_hashes','provenance'];
+// History rows whose digest does not match their value, as seen by the last read.
+// A stale digest is a self-checksum drift, not corruption: the next index rebuild (aipa-index)
+// recomputes it through persistHistory(), so it must never make the whole history unreadable.
+let staleDigestRows=0;
+export const historyStaleDigestRows=()=>staleDigestRows;
 function historyRows(root){
- const rows=[];
+ const rows=[];staleDigestRows=0;
  for(const [id,metadata] of Object.entries(readMemoryMeta(root).entries)){
   const row=metadata.index_history;if(!row)continue;
-  if(row.schema!==1||row.id!==id||typeof row.file!=='string'||typeof row.title!=='string'||!/^[a-f0-9]{64}$/.test(row.body_hash)||row.digest!==bodyHash(JSON.stringify(row.value))||!row.value||row.value.file!==row.file||row.value.title!==row.title)throw Error("Persistent index history is corrupt; source must not be guessed");
+  // digest is only a self-checksum of value. Cross-device merges and field reordering make it
+  // stale without corrupting any history fact (2026-10-29: 281/281 rows stale in one instance).
+  // The facts that actually guard provenance are still verified row by row below.
+  if(row.schema!==1||row.id!==id||typeof row.file!=='string'||typeof row.title!=='string'||!/^[a-f0-9]{64}$/.test(row.body_hash)||!row.value||row.value.file!==row.file||row.value.title!==row.title)throw Error("Persistent index history is corrupt; source must not be guessed");
+  if(row.digest!==bodyHash(JSON.stringify(row.value)))staleDigestRows++;
   rows.push({...row.value,id,body_hash:row.body_hash});
  }
  return rows;

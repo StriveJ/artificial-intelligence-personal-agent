@@ -12,15 +12,17 @@ version: 1.0.0
 - If an instance exists, continue in it instead of splitting memory across duplicates.
 - Project connection belongs to project-add and shell synchronization.
 - Framework updates belong to update-agent.
+- Activation requires a project rule for every resolved project, including the instance's own project. `aipa-init` scaffolds `user-space/projects/<project>/project.yaml`; without it `aipa-load --context` blocks with `required_context_unavailable`.
 
 ## Action sequence
 1. Reuse an existing instance when present.
 2. Ask only for missing values: absolute root (prefer new/empty), required owner name, optional industry/tech (comma-separated)/role for mentor matching. Explain template copying before using an existing nonempty destination.
 3. Check git --version and node --version against the declared installer requirements; guide installation when missing.
-4. From the foundation root run `node scripts/aipa-init.mjs --root <destination> --owner <name> [--industry <industry>] [--tech <stack>] [--role <role>]`.
+4. From the foundation root run `node scripts/aipa-init.mjs --root <destination> --owner <name> [--industry <industry>] [--tech <stack>] [--role <role>] [--project <project-id>]`.
 5. Inspect init output and mentor matches, if any.
 6. Verify entry shells/manifest/changelog/state, Core policy/activation/anchors/hooks/skills/mentors, and personal profile/privacy/memory/logs/skills/projects. The instance Git tag must match its framework version.
-7. Explain opening the instance in an IDE and running its own Core scripts with explicit root.
+7. Confirm the instance's own project rule exists: `user-space/projects/<project>/project.yaml` (default project id is the resolved destination directory name). IDs accept letters, numbers, underscores, hyphens, and dots, excluding `.` and `..`. Use `--project <project-id>` if the directory name is unsuitable; init stores its device-local mapping in ignored `local_path` so project resolution returns that ID. Activation blocks without the rule.
+8. Explain opening the instance in an IDE and running its own Core scripts with explicit root.
 
 ## Dependencies
 - scripts/aipa-init.mjs (skeleton and Git baseline tag)

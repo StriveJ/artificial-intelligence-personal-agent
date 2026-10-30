@@ -4,7 +4,7 @@
 
 AIPA (Artificial Intelligence Personal Agent) gives your AI host persistent memory, personal rules, reusable skills and project context. Your agent can pick up work across sessions while keeping its knowledge in files you own.
 
-**Version 1.0.2 · Local first · Apache-2.0**
+**Version 1.0.3 · Local first · Apache-2.0**
 
 This repository is the public foundation. Initialize a separate private instance for daily use; keep your personal information out of this public repository.
 
@@ -41,7 +41,7 @@ Configure your model in your chosen IDE or CLI host. AIPA does not include a mod
 ### 2. Download the foundation
 
 ```bash
-git clone --branch v1.0.2 https://github.com/StriveJ/artificial-intelligence-personal-agent.git
+git clone --branch v1.0.3 https://github.com/StriveJ/artificial-intelligence-personal-agent.git
 cd artificial-intelligence-personal-agent
 ```
 
@@ -122,10 +122,10 @@ In your foundation checkout, select the intended announced release:
 
 ```bash
 git fetch --tags origin
-git checkout v1.0.2
+git checkout v1.0.3
 ```
 
-Replace `v1.0.2` with a newer announced release; reinstalling the current version is refused. Preview the framework update:
+Replace `v1.0.3` with a newer announced release; reinstalling the current version is refused. Preview the framework update:
 
 ```bash
 node scripts/aipa-update.mjs --root /absolute/path/to/my-aipa --artifact . --framework-only
